@@ -1,4 +1,5 @@
 import aiohttp
+import discord
 
 async def send_welcome_via_webhook(webhook_url, content=None, embed=None):
     async with aiohttp.ClientSession() as session:

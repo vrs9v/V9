@@ -1,0 +1,23 @@
+{
+    "1296103327402168371": {
+        "channel_id": 1297271867152797727,
+        "embed_message": "sssswelcome {$user} to {$servername} \u2728\nyou are member number {$memcount}\n\ncheck:\n\n\u203b \u2060https://discord.com/channels/1296103327402168371/1302999205182312488\n\n\u203b https://discord.com/channels/1296103327402168371/1296107833338761340",
+        "embed_color": "4b3b80",
+        "sender_name": "\ud835\udcb2\ud835\udc52\ud835\udcc1\ud835\udcb8\ud835\udc5c\ud835\udcc2\ud835\udc52",
+        "sender_avatar": null,
+        "embed_image": "https://cdn.discordapp.com/ephemeral-attachments/1399668800386895954/1399734489504153700/Welcome_....gif?ex=688a13d4&is=6888c254&hm=6f8bfdcd6e1bcded5d97f8a9c9b4304297e661e57bb03b145520a6853f85c3ef&",
+        "embed_thumbnail": "https://cdn.discordapp.com/ephemeral-attachments/1399668800386895954/1399734491949563984/avatar_tr.png?ex=688a13d4&is=6888c254&hm=b7596b2260dd608e92cca7c67b6a6eb74fbadce6bd3317cdcea4279ea993fcec&",
+        "content_message": "{$@user}",
+        "webhook_url": "https://discord.com/api/webhooks/1399707705371005081/_5aFVoFG9agc6oNJx6CzVFGnX0_4-E5XvKke67FXye9NZ0Q8cSvLUann88KdG2tGuDNM"
+    },
+    "1097851228551131216": {
+        "channel_id": 1375611457965789254,
+        "embed_message": "{$user} Welcome to V9 Community check the bots <#1375613779731157102>",
+        "embed_color": "#1c5d64",
+        "sender_name": null,
+        "sender_avatar": null,
+        "embed_image": "https://cdn.discordapp.com/ephemeral-attachments/1399668800386895954/1399739859974885396/wel.png?ex=688a18d4&is=6888c754&hm=aef848db1e40b7cc8b5f71d0337b1c7bf25286a522214610009fff14a0500f4b&",
+        "embed_thumbnail": null,
+        "content_message": null
+    }
+}

@@ -5,7 +5,7 @@ import json
 import os
 from utils.parser import parse_placeholders
 from discord.ui import Modal, TextInput
-from utils import send_welcome_via_webhook, is_valid_url
+from utils.webhook_utils import send_welcome_via_webhook
 
 
 class Welcome(commands.Cog):

@@ -101,7 +101,22 @@ class Welcome(commands.Cog):
             embed.set_thumbnail(url=settings["embed_thumbnail"])
 
         content = parse_placeholders(settings.get("content_message", ""), member)
-        await send_welcome_via_webhook(webhook_url, content=content, embed=embed)
+        try:
+            await send_welcome_via_webhook(webhook_url, content=content, embed=embed)
+        except discord.Forbidden:
+    # فشل الإرسال بسبب صلاحيات - نحاول نرسل تنبيه في نفس الروم المحدد
+            try:
+                channel_id = settings.get("channel_id")
+                if channel_id:
+                    channel = member.guild.get_channel(channel_id)
+                    if channel:
+                        await channel.send(
+                            f"❌ لا أستطيع إرسال رسالة الترحيب هنا. تأكد من أن لدي صلاحيات `إرسال الرسائل` و `إرفاق الروابط`.",
+                            silent=True  # ما ترسل تنبيه لكل الأعضاء
+                        )
+            except Exception as e:
+                print(f"فشل إرسال تحذير: {e}")
+
 
     # أمر set_welcome مع تقييد الاستخدام مرة واحدة فقط
     @app_commands.command(name="set_welcome", description="إعداد رسالة الترحيب")
@@ -262,6 +277,27 @@ class Welcome(commands.Cog):
         data[guild_id]["webhook_url"] = webhook_url
         self.save_data(data)
         await interaction.response.send_message("✅ تم تعيين رابط الويبهوك للسيرفر.", ephemeral=True)
+
+    @app_commands.command(name="welcome_room", description="عرض الروم المخصص لإرسال رسالة الترحيب")
+    @app_commands.checks.has_permissions(administrator=True)
+    @app_commands.default_permissions(administrator=True)
+    async def welcome_room(self, interaction: discord.Interaction):
+        data = self.load_data()
+        settings = data.get(str(interaction.guild.id))
+
+        if not settings or "channel_id" not in settings:
+            await interaction.response.send_message("❌ لم يتم إعداد روم الترحيب بعد.", ephemeral=True)
+            return
+
+        channel_id = settings["channel_id"]
+        channel = interaction.guild.get_channel(channel_id)
+
+        if not channel:
+            await interaction.response.send_message("❌ لم يتم العثور على الروم. قد يكون تم حذفه.", ephemeral=True)
+            return
+
+        await interaction.response.send_message(f"📢 روم الترحيب الحالي هو: {channel.mention}", ephemeral=True)
+
 
 async def setup(bot):
     await bot.add_cog(Welcome(bot))
